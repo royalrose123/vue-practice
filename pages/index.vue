@@ -2,10 +2,20 @@
   <div class="container">
     <div>
       <Logo />
-      <h1 class="title">
-        vue-practice
+      <h1 class="title" @click='onTest'>
+        {{name}}
       </h1>
+      <h2 v-show='isShow'>
+        {{message}}
+      </h2>
+      <div>
+        <div v-for='todo in todos' :key='todo.id'>
+          {{todo.name}}
+          {{todo.age}}
+          </div>
+      </div>
       <div class="links">
+        <input v-model='message' />
         <a
           href="https://nuxtjs.org/"
           target="_blank"
@@ -28,7 +38,42 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data(){
+    return {
+      name :'hahaha',
+      isShow: true,
+      todos: [
+        {name: 'Royal', age: 20},
+        {name: 'Wunyu', age: 80},
+        {name: 'Bob', age: 60},
+        ],
+      message: 'cool',
+    }
+  },
+  methods:{
+    onTest (){
+      console.log('clicklallakkkkkk',this.message)
+      this.isShow = !this.isShow
+    },
+    onInputChange(){
+      console.log('inputttt')
+    }
+  },
+  directives:{
+    focus: {
+      inserted: function(element){
+        element.focus()
+      }
+    }
+  },
+  watch:{
+    message: function(val,oldVal){
+      console.log('val', val)
+      console.log('oldVal', oldVal)
+    }
+  }
+}
 </script>
 
 <style>
