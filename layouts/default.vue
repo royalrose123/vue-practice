@@ -1,11 +1,13 @@
 <template>
-  <div>
+  <div  v-bind:style="{ width: '100%', height: '100%' }">
     <Nuxt />
   </div>
 </template>
 
 <style>
 html {
+  width: 100%;
+  height: 100%;
   font-family:
     'Source Sans Pro',
     -apple-system,
@@ -22,6 +24,11 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+}
+
+body{
+  width: 100%;
+  height: 100%;
 }
 
 *,
@@ -58,5 +65,15 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+#__nuxt{
+width: 100%;
+height: 100%;
+}
+
+#__layout{
+width: 100%;
+height: 100%;
 }
 </style>
