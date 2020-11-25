@@ -21,7 +21,11 @@ export const actions = {
 
 export const mutations = {
   SET_TODOS(state, payload) {
-    state.list = payload.data
+    state.list = payload.data.map((item) => ({
+      id: item.id,
+      title: item.title,
+      isCompleted: item.is_completed
+    }))
   },
   TOGGLE_TODO(state, payload) {
     state.list = state.list.map((item, id) => {
