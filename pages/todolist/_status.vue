@@ -3,74 +3,42 @@
     <h1 class="title">Todo List</h1>
     <div class="filter">
       <NuxtLink class="filter-item" to="/todolist/all">全部</NuxtLink>
-      <NuxtLink class="filter-item" to="/todolist/actived">已完成</NuxtLink>
-      <NuxtLink class="filter-item" to="/todolist/completed">未完成</NuxtLink>
+      <NuxtLink class="filter-item" to="/todolist/actived">未完成</NuxtLink>
+      <NuxtLink class="filter-item" to="/todolist/completed">已完成</NuxtLink>
     </div>
     <div class="todolist">
       <Todo
-        v-for="(todo, index) in filterTodos"
+        v-for="todo in filterTodos"
+        :id="todo.id"
         :key="todo.id"
         class="todo"
         :todo="todo"
-        :index="index"
-        @delete-todo="handleDeleteTodo"
-        @toggle-todo="handleToggleTodo"
       />
     </div>
   </div>
 </template>
 
 <script>
-import Todo from '../../components/Todo'
-
-const STATUS = {
-  ALL: 'all',
-  COMPLETED: 'completed',
-  ACTIVED: 'actived'
-}
-
 export default {
-  components: {
-    Todo
-  },
   data() {
-    return {
-      filterStatus: STATUS.ALL,
-      todos: [
-        { title: '吃飯', isCompleted: false },
-        { title: '出門', isCompleted: false },
-        { title: '買菜', isCompleted: true },
-        { title: '剪頭髮', isCompleted: false },
-        { title: '運動', isCompleted: false }
-      ]
-    }
+    return {}
+  },
+  async fetch({ store }) {
+    await store.dispatch('todos/GET_TODOS')
   },
   computed: {
     filterTodos() {
       const status = this.$route.params.status
       if (status === 'completed') {
-        return this.todos.filter((item) => item.isCompleted)
+        return this.$store.state.todos.list.filter((item) => item.isCompleted)
       }
       if (status === 'actived') {
-        return this.todos.filter((item) => !item.isCompleted)
+        return this.$store.state.todos.list.filter((item) => !item.isCompleted)
       }
-      return this.todos
+      return this.$store.state.todos.list
     }
   },
-  methods: {
-    handleToggleTodo(selectItemIndex) {
-      this.todos = this.todos.map((item, index) => {
-        if (selectItemIndex === index) {
-          return { ...item, isCompleted: !item.isCompleted }
-        } else {
-          return item
-        }
-      })
-    },
-    handleDeleteTodo(selectItemIndex) {
-      this.todos = this.todos.filter((item, index) => index !== selectItemIndex)
-    }
-  }
+  methods: {}
 }
 </script>
 

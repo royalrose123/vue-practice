@@ -1,17 +1,17 @@
-<template>
-  <div :class="['todo', todo.isCompleted ? 'success' : 'danger']">
-    <p class="title">{{ todo.title }}</p>
-    <input
-      class="checkbox"
-      type="checkbox"
-      :checked="todo.isCompleted"
-      @click="toggleTodo"
-    />
-    <p class="delete" @click="deleteTodo">X</p>
-  </div>
+<template lang="pug">
+  div(:class="['todo', todo.isCompleted ? 'success' : 'danger']")
+    p.title {{ todo.title }}
+    input.checkbox(
+      type="checkbox",
+      :checked="todo.isCompleted",
+      @click="toggleTodo({ id })"
+    )
+    p.delete(@click="deleteTodo({ id })") X
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'Button',
   props: {
@@ -19,18 +19,16 @@ export default {
       type: Object,
       required: true
     },
-    index: {
+    id: {
       type: Number,
       required: true
     }
   },
   methods: {
-    toggleTodo() {
-      this.$emit('toggle-todo', this.index)
-    },
-    deleteTodo() {
-      this.$emit('delete-todo', this.index)
-    }
+    ...mapMutations({
+      toggleTodo: 'todos/TOGGLE_TODO',
+      deleteTodo: 'todos/DELETE_TODO'
+    })
   }
 }
 </script>
