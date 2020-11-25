@@ -1,21 +1,17 @@
-<template>
-  <div class="wrapper">
-    <h1 class="title">Todo List</h1>
-    <div class="filter">
-      <NuxtLink class="filter-item" to="/todolist/all">全部</NuxtLink>
-      <NuxtLink class="filter-item" to="/todolist/actived">未完成</NuxtLink>
-      <NuxtLink class="filter-item" to="/todolist/completed">已完成</NuxtLink>
-    </div>
-    <div class="todolist">
-      <Todo
+<template lang="pug">
+  div.wrapper
+    h1.title todo List
+    div.filter
+      NuxtLink.filter-item(to="/todolist/all") 全部
+      NuxtLink.filter-item(to="/todolist/actived") 未完成
+      NuxtLink.filter-item(to="/todolist/completed") 已完成
+    div.todolist
+      Todo.todo(
         v-for="todo in filterTodos"
         :id="todo.id"
         :key="todo.id"
-        class="todo"
         :todo="todo"
-      />
-    </div>
-  </div>
+      )
 </template>
 
 <script>
@@ -58,7 +54,7 @@ export default {
 }
 
 .filter-item {
-  margin: 0 8px;
+  margin: 4px 8px;
 }
 
 .title {
