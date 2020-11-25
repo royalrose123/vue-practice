@@ -1,0 +1,8 @@
+{
+    "cucumberautocomplete.customParameters": [
+
+    ],
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+}

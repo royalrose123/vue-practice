@@ -2,20 +2,20 @@
   <div class="container">
     <div>
       <Logo />
-      <h1 class="title" @click='onTest'>
-        {{name}}
+      <h1 class="title" @click="onTest">
+        {{ name }}
       </h1>
-      <h2 v-show='isShow'>
-        {{message}}
+      <h2 v-show="isShow">
+        {{ message }}
       </h2>
       <div>
-        <div v-for='todo in todos' :key='todo.id'>
-          {{todo.name}}
-          {{todo.age}}
-          </div>
+        <div v-for="todo in todos" :key="todo.id">
+          {{ todo.name }}
+          {{ todo.age }}
+        </div>
       </div>
       <div class="links">
-        <input v-model='message' />
+        <input v-model="message" />
         <a
           href="https://nuxtjs.org/"
           target="_blank"
@@ -39,38 +39,38 @@
 
 <script>
 export default {
-  data(){
-    return {
-      name :'hahaha',
-      isShow: true,
-      todos: [
-        {name: 'Royal', age: 20},
-        {name: 'Wunyu', age: 80},
-        {name: 'Bob', age: 60},
-        ],
-      message: 'cool',
-    }
-  },
-  methods:{
-    onTest (){
-      console.log('clicklallakkkkkk',this.message)
-      this.isShow = !this.isShow
-    },
-    onInputChange(){
-      console.log('inputttt')
-    }
-  },
-  directives:{
+  directives: {
     focus: {
-      inserted: function(element){
+      inserted(element) {
         element.focus()
       }
     }
   },
-  watch:{
-    message: function(val,oldVal){
+  data() {
+    return {
+      name: 'hahaha',
+      isShow: true,
+      todos: [
+        { name: 'Royal', age: 20 },
+        { name: 'Wunyu', age: 80 },
+        { name: 'Bob', age: 60 }
+      ],
+      message: 'cool'
+    }
+  },
+  watch: {
+    message(val, oldVal) {
       console.log('val', val)
       console.log('oldVal', oldVal)
+    }
+  },
+  methods: {
+    onTest() {
+      console.log('clicklallakkkkkk', this.message)
+      this.isShow = !this.isShow
+    },
+    onInputChange() {
+      console.log('inputttt')
     }
   }
 }
@@ -87,16 +87,8 @@ export default {
 }
 
 .title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;

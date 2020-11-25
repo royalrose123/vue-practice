@@ -1,19 +1,35 @@
 <template>
-  <div :class="['todo', todo.isCompleted? 'success':'danger']" >
-    <p class='title'>{{todo.title}}</p>
-    <input class='checkbox' type='checkbox' v-model='todo.isCompleted'/>
-    <p class='delete' @click='deleteTodo'>X</p>
+  <div :class="['todo', todo.isCompleted ? 'success' : 'danger']">
+    <p class="title">{{ todo.title }}</p>
+    <input
+      class="checkbox"
+      type="checkbox"
+      :checked="todo.isCompleted"
+      @click="toggleTodo"
+    />
+    <p class="delete" @click="deleteTodo">X</p>
   </div>
 </template>
-
 
 <script>
 export default {
   name: 'Button',
-  props: ['todo','index'],
-  methods:{
-    deleteTodo(){
-      this.$emit('delete-todo',this.index)
+  props: {
+    todo: {
+      type: Object,
+      required: true
+    },
+    index: {
+      type: Number,
+      required: true
+    }
+  },
+  methods: {
+    toggleTodo() {
+      this.$emit('toggle-todo', this.index)
+    },
+    deleteTodo() {
+      this.$emit('delete-todo', this.index)
     }
   }
 }
@@ -54,5 +70,4 @@ export default {
 .delete {
   cursor: pointer;
 }
-
 </style>

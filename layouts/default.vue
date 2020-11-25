@@ -1,5 +1,5 @@
 <template>
-  <div  v-bind:style="{ width: '100%', height: '100%' }">
+  <div :style="{ width: '100%', height: '100%' }">
     <Nuxt />
   </div>
 </template>
@@ -8,15 +8,8 @@
 html {
   width: 100%;
   height: 100%;
-  font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -26,7 +19,7 @@ html {
   box-sizing: border-box;
 }
 
-body{
+body {
   width: 100%;
   height: 100%;
 }
@@ -67,13 +60,20 @@ body{
   background-color: #35495e;
 }
 
-#__nuxt{
-width: 100%;
-height: 100%;
+#__nuxt {
+  width: 100%;
+  height: 100%;
 }
 
-#__layout{
-width: 100%;
-height: 100%;
+#__layout {
+  width: 100%;
+  height: 100%;
+}
+
+a,
+:focus {
+  text-decoration: none;
+  outline: none;
+  color: #000000;
 }
 </style>
