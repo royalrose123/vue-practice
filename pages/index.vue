@@ -1,40 +1,23 @@
-<template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title" @click="onTest">
-        {{ name }}
-      </h1>
-      <h2 v-show="isShow">
-        {{ message }}
-      </h2>
-      <div>
-        <div v-for="todo in todos" :key="todo.id">
-          {{ todo.name }}
-          {{ todo.age }}
-        </div>
-      </div>
-      <div class="links">
-        <input v-model="message" />
-        <a
+<template lang="pug">
+  div.container
+    Logo
+    h1.title (@click="onTest") {{ name }}
+    h2 (v-show="isShow") {{ message }}
+    div (v-for="todo in todos" :key="todo.id") {{ todo.name }} {{ todo.age }}
+      div.links
+        input(v-model="message")
+        a(
           href="https://nuxtjs.org/"
           target="_blank"
           rel="noopener noreferrer"
           class="button--green"
-        >
-          Documentation
-        </a>
-        <a
+        ) Documentation
+        a(
           href="https://github.com/nuxt/nuxt.js"
           target="_blank"
           rel="noopener noreferrer"
           class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-  </div>
+        ) GitHub
 </template>
 
 <script>
@@ -47,31 +30,21 @@ export default {
     }
   },
   data() {
-    return {
-      name: 'hahaha',
-      isShow: true,
-      todos: [
-        { name: 'Royal', age: 20 },
-        { name: 'Wunyu', age: 80 },
-        { name: 'Bob', age: 60 }
-      ],
-      message: 'cool'
+    return {}
+  },
+  computed: {
+    todos() {
+      return this.$store.state.todos.list
     }
   },
   watch: {
-    message(val, oldVal) {
-      console.log('val', val)
-      console.log('oldVal', oldVal)
-    }
+    message(val, oldVal) {}
   },
   methods: {
     onTest() {
-      console.log('clicklallakkkkkk', this.message)
       this.isShow = !this.isShow
     },
-    onInputChange() {
-      console.log('inputttt')
-    }
+    onInputChange() {}
   }
 }
 </script>
