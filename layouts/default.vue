@@ -1,7 +1,7 @@
-<template>
-  <div :style="{ width: '100%', height: '100%' }">
-    <Nuxt />
-  </div>
+<template lang="pug">
+  div
+    Header
+    Nuxt
 </template>
 
 <style>
